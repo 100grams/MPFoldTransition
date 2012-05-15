@@ -31,6 +31,7 @@
 		4DBDFA4315416BDA003AD415 /* MPFoldTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDFA3D15416BAD003AD415 /* MPFoldTransition.m */; };
 		4DFA2F0F154FF49D004AF678 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D63A177154FEE8500B310CF /* AboutViewController.m */; };
 		4DFA2F11154FF4A1004AF678 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D63A179154FEE8600B310CF /* DetailsViewController.m */; };
+		5E3A225A1562E01000F226DB /* MPCubeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3A22591562E01000F226DB /* MPCubeTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,8 @@
 		4DBDFA3C15416BAD003AD415 /* MPFoldTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPFoldTransition.h; sourceTree = "<group>"; };
 		4DBDFA3D15416BAD003AD415 /* MPFoldTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPFoldTransition.m; sourceTree = "<group>"; };
 		4DDCC8E2154960C500489938 /* MPFoldEnumerations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPFoldEnumerations.h; sourceTree = "<group>"; };
+		5E3A22581562E01000F226DB /* MPCubeTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCubeTransition.h; sourceTree = "<group>"; };
+		5E3A22591562E01000F226DB /* MPCubeTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCubeTransition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,8 @@
 				4DBDFA3315416BAD003AD415 /* MPAnimation.m */,
 				4DBDFA3C15416BAD003AD415 /* MPFoldTransition.h */,
 				4DBDFA3D15416BAD003AD415 /* MPFoldTransition.m */,
+				5E3A22581562E01000F226DB /* MPCubeTransition.h */,
+				5E3A22591562E01000F226DB /* MPCubeTransition.m */,
 				4DB921511561117B0080D608 /* MPTransition.h */,
 				4DB921521561117B0080D608 /* MPTransition.m */,
 			);
@@ -284,6 +289,7 @@
 				4DFA2F0F154FF49D004AF678 /* AboutViewController.m in Sources */,
 				4DFA2F11154FF4A1004AF678 /* DetailsViewController.m in Sources */,
 				4DB921531561117B0080D608 /* MPTransition.m in Sources */,
+				5E3A225A1562E01000F226DB /* MPCubeTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

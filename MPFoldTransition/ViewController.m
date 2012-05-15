@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 #import "MPFoldSegue.h"
 #import "DetailsViewController.h"
+#import "MPCubeTransition.h"
+
 
 #define ABOUT_IDENTIFIER		@"AboutID"
 #define ABOUT_SEGUE_IDENTIFIER		@"segueToAbout"
@@ -150,15 +152,26 @@
 		forwards = YES;
 	
 	// execute the transition
-	[MPFoldTransition transitionFromView:previousView 
+//	[MPFoldTransition transitionFromView:previousView 
+//								  toView:nextView 
+//								duration:[MPFoldTransition defaultDuration]
+//								   style:forwards? [self style]	: MPFoldStyleFlipFoldBit([self style]) 
+//						transitionAction:MPTransitionActionAddRemove
+//							  completion:^(BOOL finished) {
+//								  [stepper setUserInteractionEnabled:YES];
+//							  }
+//	 ];
+
+    [MPCubeTransition transitionFromView:previousView 
 								  toView:nextView 
-								duration:[MPFoldTransition defaultDuration]
+								duration:[MPCubeTransition defaultDuration]
 								   style:forwards? [self style]	: MPFoldStyleFlipFoldBit([self style]) 
 						transitionAction:MPTransitionActionAddRemove
 							  completion:^(BOOL finished) {
 								  [stepper setUserInteractionEnabled:YES];
 							  }
 	 ];
+
 }
 
 /*	Info button is wired to use a storyboard segue, 

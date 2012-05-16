@@ -13,6 +13,7 @@
 @implementation MPTransition
 
 @synthesize sourceView = _sourceView;
+@synthesize superview = _superview;
 @synthesize destinationView = _destinationView;
 @synthesize duration = _duration;
 @synthesize rect = _rect;
@@ -25,8 +26,12 @@
 	self = [super init];
 	if (self)
 	{
-		_sourceView = sourceView;
-		_destinationView = destinationView;
+        self.superview = [sourceView superview];
+		if (!_superview) {
+            self.superview = [destinationView superview];
+        }
+        self.sourceView = sourceView;
+		self.destinationView = destinationView;
 		_duration = duration;
 		_rect = [sourceView bounds];
 		_timingCurve = timingCurve;
@@ -72,7 +77,7 @@
 {
 	switch (self.completionAction) {
 		case MPTransitionActionAddRemove:
-			[[self.sourceView superview] addSubview:self.destinationView];
+			[self.superview addSubview:self.destinationView];
 			[self.sourceView removeFromSuperview];
 			[self.sourceView setHidden:NO];
 			break;
@@ -121,5 +126,16 @@
 {
 	return DEFAULT_DURATION;
 }
+
+
+- (void) dealloc
+{
+    self.superview = nil;
+    self.destinationView = nil;
+    self.sourceView = nil;
+    
+    [super dealloc];
+}
+
 
 @end

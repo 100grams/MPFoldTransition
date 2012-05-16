@@ -58,8 +58,8 @@ static inline double mp_radians (double degrees) {return degrees * M_PI/180;}
     //	else
     //		lowerRect.origin.x += upperRect.size.width;
     
-	if (![self isDimissing])
-		self.destinationView.bounds = (CGRect){CGPointZero, bounds.size};
+//	if (![self isDimissing])
+//		self.destinationView.bounds = (CGRect){CGPointZero, bounds.size};
 	
 	CGRect destUpperRect = CGRectOffset(upperRect, -upperRect.origin.x, -upperRect.origin.y);
     //	CGRect destLowerRect = CGRectOffset(lowerRect, -upperRect.origin.x, -upperRect.origin.y);
@@ -134,7 +134,7 @@ static inline double mp_radians (double degrees) {return degrees * M_PI/180;}
 	CGPoint center = (CGPoint){CGRectGetMidX(mainRect), CGRectGetMidY(mainRect)};
 	if ([containerView isKindOfClass:[UIWindow class]])
 		mainRect = [actingSource convertRect:mainRect fromView:nil];
-	mainView = [[UIView alloc] initWithFrame:mainRect];
+	mainView = [[[UIView alloc] initWithFrame:mainRect] autorelease];
 	mainView.backgroundColor = [UIColor clearColor];
 	mainView.transform = actingSource.transform;
 	[containerView insertSubview:mainView atIndex:2];
@@ -359,6 +359,7 @@ static inline double mp_radians (double degrees) {return degrees * M_PI/180;}
 {
 	MPCubeTransition *transition = [[MPCubeTransition alloc] initWithSourceView:fromView destinationView:toView duration:duration style:style completionAction:action];
 	[transition perform:completion];
+    [transition release];
 }
 
 

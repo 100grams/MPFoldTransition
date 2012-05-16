@@ -44,6 +44,13 @@ static inline double mp_radians (double degrees) {return degrees * M_PI/180;}
 	return self;
 }
 
+
+- (void) dealloc
+{
+    self.foldShadowColor = nil;
+    [super dealloc];
+}
+
 #pragma mark - Instance methods
 
 - (void)perform:(void (^)(BOOL finished))completion
@@ -129,7 +136,7 @@ static inline double mp_radians (double degrees) {return degrees * M_PI/180;}
 	UIImage *slideLower = [MPAnimation renderImageFromView:forwards? self.destinationView : self.sourceView withRect:forwards? destLowerRect : lowerRect transparentInsets:slideInsets];
 		
 	UIView *actingSource = [self sourceView]; // the view that is already part of the view hierarchy
-	UIView *containerView = [actingSource superview];
+	UIView *containerView = self.superview;
 	if (!containerView)
 	{
 		// in case of dismissal, it is actually the destination view since we had to add it
@@ -162,7 +169,7 @@ static inline double mp_radians (double degrees) {return degrees * M_PI/180;}
 	CGPoint center = (CGPoint){CGRectGetMidX(mainRect), CGRectGetMidY(mainRect)};
 	if ([containerView isKindOfClass:[UIWindow class]])
 		mainRect = [actingSource convertRect:mainRect fromView:nil];
-	mainView = [[UIView alloc] initWithFrame:mainRect];
+	mainView = [[[UIView alloc] initWithFrame:mainRect] autorelease];
 	mainView.backgroundColor = [UIColor clearColor];
 	mainView.transform = actingSource.transform;
 	[containerView insertSubview:mainView atIndex:0];
@@ -382,19 +389,20 @@ static inline double mp_radians (double degrees) {return degrees * M_PI/180;}
 
 + (void)transitionFromViewController:(UIViewController *)fromController toViewController:(UIViewController *)toController duration:(NSTimeInterval)duration style:(MPFoldStyle)style completion:(void (^)(BOOL finished))completion
 {
-	MPFoldTransition *foldTransition = [[MPFoldTransition alloc] initWithSourceView:fromController.view destinationView:toController.view duration:duration style:style completionAction:MPTransitionActionNone];
+	MPFoldTransition *foldTransition = [[[MPFoldTransition alloc] initWithSourceView:fromController.view destinationView:toController.view duration:duration style:style completionAction:MPTransitionActionNone] autorelease];
 	[foldTransition perform:completion];
 }
 
 + (void)transitionFromView:(UIView *)fromView toView:(UIView *)toView duration:(NSTimeInterval)duration style:(MPFoldStyle)style transitionAction:(MPTransitionAction)action completion:(void (^)(BOOL finished))completion
 {
-	MPFoldTransition *foldTransition = [[MPFoldTransition alloc] initWithSourceView:fromView destinationView:toView duration:duration style:style completionAction:action];
+	MPFoldTransition *foldTransition = [[[MPFoldTransition alloc] initWithSourceView:fromView destinationView:toView duration:duration style:style completionAction:action] autorelease];
 	[foldTransition perform:completion];
+
 }
 
 + (void)presentViewController:(UIViewController *)viewControllerToPresent from:(UIViewController *)presentingController duration:(NSTimeInterval)duration style:(MPFoldStyle)style completion:(void (^)(BOOL finished))completion
 {		
-	MPFoldTransition *foldTransition = [[MPFoldTransition alloc] initWithSourceView:presentingController.view destinationView:viewControllerToPresent.view duration:duration style:style completionAction:MPTransitionActionNone];
+	MPFoldTransition *foldTransition = [[[MPFoldTransition alloc] initWithSourceView:presentingController.view destinationView:viewControllerToPresent.view duration:duration style:style completionAction:MPTransitionActionNone] autorelease];
 	
 	[foldTransition setPresentingController:presentingController];
 	
@@ -432,7 +440,7 @@ static inline double mp_radians (double degrees) {return degrees * M_PI/180;}
 		dest = [dest parentViewController];
 	}
 	
-	MPFoldTransition *foldTransition = [[MPFoldTransition alloc] initWithSourceView:src.view destinationView:dest.view duration:duration style:style completionAction:MPTransitionActionNone];
+	MPFoldTransition *foldTransition = [[[MPFoldTransition alloc] initWithSourceView:src.view destinationView:dest.view duration:duration style:style completionAction:MPTransitionActionNone] autorelease];
 	[foldTransition setDismissing:YES];
 	[presentingController dismissViewControllerAnimated:NO completion:nil];
 	[foldTransition perform:^(BOOL finished) {
@@ -492,5 +500,7 @@ static inline double mp_radians (double degrees) {return degrees * M_PI/180;}
 	
 	return toController;
 }
+
+
 
 @end

@@ -16,8 +16,9 @@ typedef void (^CompletionBlock)(BOOL);
 
 #pragma mark - Properties
 
-@property (strong, nonatomic) UIView *sourceView;
-@property (strong, nonatomic) UIView *destinationView;
+@property (retain, nonatomic) UIView *superview;
+@property (retain, nonatomic) UIView *sourceView;
+@property (retain, nonatomic) UIView *destinationView;
 @property (assign, nonatomic) NSTimeInterval duration;
 @property (assign, nonatomic) CGRect rect;
 @property (assign, nonatomic) MPTransitionAction completionAction;
